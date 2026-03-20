@@ -1,78 +1,47 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Heart } from "@/components/icons/fill"
+import { NorthStar } from "@/components/icons/outline"
+import IdulFitri from "@/components/idul-fitri"
+import Ketupat from "@/components/ketupat"
 
 export default function Home() {
-  return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black`}
-    >
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the index.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    return (
+        <div className="flex flex-col relative items-center justify-center min-h-screen overflow-hidden">
+            <div className="absolute inset-0 flex bg-moroccan opacity-10">
+                <div className="w-full bg-radial from-transparent via-lime-800/50 to-lime-800"></div>
+            </div>
+            <h1 className="text-4xl font-bold inline-flex text-center flex-col text-lime-200 relative">
+                <span>Selamat</span>
+                <span>Hari Raya</span>
+                <span className="w-full flex justify-center mt-8"><IdulFitri className="text-lime-100 w-full" /></span>
+
+                {/* Decorations */}
+                <div className="absolute top-0 left-0">
+                    <Ketupat />
+                </div>
+                <div className="absolute -bottom-36 -right-16 md:-bottom-24 md:-right-36 -z-1">
+                    <Ketupat className="w-48 h-auto -scale-x-100" />
+                </div>
+                <div className="absolute top-8 right-8">
+                    <Heart className="w-12 h-12 rotate-12 text-lime-600" />
+                </div>
+                <div className="absolute bottom-6 left-16">
+                    <Heart className="w-12 h-12 -rotate-16 text-lime-600" />
+                </div>
+                <div className="absolute -top-16 right-16">
+                    <NorthStar className="w-24 h-24 -rotate-12 text-lime-100" />
+                </div>
+                <div className="absolute -bottom-16 left-8">
+                    <NorthStar className="w-24 h-24 rotate-12 text-lime-100" />
+                </div>
+                <div className="absolute -top-8 inset-x-0 flex justify-center -z-2">
+                    <NorthStar strokeWidth={1} className="w-full h-full -rotate-24 text-lime-200 opacity-10" />
+                </div>
+            </h1>
+            <h2 className="text-3xl mt-16 font-black text-lime-300">1447H</h2>
+
+            <div className="absolute flex flex-col space-y-2 bottom-8 md:bottom-16 inset-x-6 md:inset-x-16 text-center">
+                <p className="text-white font-medium">Selamat berhari raya, My Angel, Mi Casa, Mi Amor. Selamat berlibur. Wish You always happy. Mohon maaf lahir dan batin, atas segala hal buruk yang kulakukan. I <span className="text-red-400 font-bold">Love</span> You more than anything, always.</p>
+            </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs/pages/getting-started?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    )
 }
