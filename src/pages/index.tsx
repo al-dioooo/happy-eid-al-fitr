@@ -1,10 +1,11 @@
 import { motion } from "motion/react"
+import type { Variants } from "motion/react"
 import { Heart } from "@/components/icons/fill"
 import { NorthStar } from "@/components/icons/outline"
 import IdulFitri from "@/components/idul-fitri"
 import Ketupat from "@/components/ketupat"
 
-const decoContainerVariants = {
+const decoContainerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -15,7 +16,7 @@ const decoContainerVariants = {
     }
 }
 
-const popEntranceVariants = {
+const popEntranceVariants: Variants = {
     hidden: { scale: 0, opacity: 0 },
     visible: {
         scale: 1,
@@ -28,8 +29,8 @@ const popEntranceVariants = {
     }
 }
 
-const decoFloatVariants = {
-    idle: (customDelay = 0) => ({
+const decoFloatVariants: Variants = {
+    idle: (customDelay: number = 0) => ({
         y: [0, -12, 0],
         transition: {
             duration: 3,
@@ -40,27 +41,47 @@ const decoFloatVariants = {
     })
 }
 
-const textPopVariants = {
+const textPopVariants: Variants = {
     hidden: { scale: 0.5, opacity: 0 },
-    visible: (customDelay = 0) => ({
+    visible: (customDelay: number = 0) => ({
         scale: 1,
         opacity: 1,
         transition: {
             type: "spring",
             stiffness: 250,
-            damping: 22, // Damping lebih tinggi agar bounce sedikit saja
+            damping: 22,
             delay: customDelay
         }
     })
 }
 
-const textIdleVariants = {
+const textIdleVariants: Variants = {
     idle: {
         scale: [1, 1.015, 1],
         transition: {
             duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
+        }
+    }
+}
+
+const logoIdleVariants: Variants = {
+    idle: {
+        y: [0, -5, 0],
+        transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+    }
+}
+
+const floatInVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 1,
+            ease: "easeOut",
+            delay: 2.2
         }
     }
 }
@@ -110,12 +131,7 @@ export default function Home() {
                 >
                     <motion.div
                         animate="idle"
-                        variants={{
-                            idle: {
-                                y: [0, -5, 0],
-                                transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
-                            }
-                        }}
+                        variants={logoIdleVariants}
                         className="w-full"
                     >
                         <IdulFitri className="text-lime-100 w-full" />
@@ -186,9 +202,14 @@ export default function Home() {
                 </motion.span>
             </motion.h2>
 
-            <div className="absolute flex flex-col space-y-2 bottom-8 md:bottom-16 inset-x-6 md:inset-x-16 text-center z-10">
+            <motion.div
+                variants={floatInVariants}
+                initial="hidden"
+                animate="visible"
+                className="absolute flex flex-col space-y-2 bottom-8 md:bottom-16 inset-x-6 md:inset-x-16 text-center z-10"
+            >
                 <p className="text-white font-medium">Selamat berhari raya, My Angel, Mi Casa, Mi Amor. Selamat berlibur. Wish You always happy. Mohon maaf lahir dan batin, atas segala hal buruk yang kulakukan. I <span className="text-red-400 font-bold">Love</span> You more than anything, always.</p>
-            </div>
+            </motion.div>
         </div>
     )
 }
